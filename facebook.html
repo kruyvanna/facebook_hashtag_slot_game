@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '452220451533688',
+          xfbml      : true,
+          version    : 'v2.1'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+
+      function login(){
+        FB.getLoginStatus(function(response) {
+          if (response.status === 'connected') {
+            console.log('Logged in.');
+          }
+          else {
+            FB.login(function(){}, {scope: 'read_stream'});
+          }
+        });
+      }
+
+
+      function getShare(){
+        FB.api(
+          "/401077880043011/sharedposts",
+          function (response) {
+            console.log(response);
+            if (response && !response.error) {
+              var shares = response.data;
+              var sharers = [];
+              shares.forEach(function(share){
+                if(share.message ){
+                  if(share.message.indexOf("#ksk_happy_sunday") >= 0){
+                    sharers.push(share.from.name);
+                  }
+                }
+              });
+
+              console.log(sharers);
+            }
+          }
+      );
+      }
+
+    </script>
+</head>
+<body>
+
+<button type="" onclick="login()">Login</button>
+<button type="" onclick="getShare()">Get Share</button>
+<ul id="sharers">
+  
+</ul>
+</body>
+</html>

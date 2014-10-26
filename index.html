@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>jSlots Slot Machine - Matthew Lein</title>
+<title>រង្វាន់អាវយឺត</title>
 
 <link href='http://fonts.googleapis.com/css?family=Gravitas+One&text=1234567' rel='stylesheet' type='text/css'>
-
+<link rel="stylesheet" href="style.css"/>
 <!-- Syntax highlighting, ignore this -->
 <link rel="stylesheet" href="SyntaxHighlighter/Styles/SyntaxHighlighter.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
@@ -43,8 +43,7 @@ input[type="button"] {
     border: 1px solid #999;
 }
 
-.fancy .slot li {
-    width: 100px;
+.fancy .slot li {    
     line-height: 100px;
     text-align: center;
     font-size: 70px;
@@ -201,109 +200,29 @@ input[type="button"] {
     <div id="wrapper">
         <div id="content">
 
-            <h1>jQuery jSlots – Lucky 7's!</h1>
+            <h1>រង្វាន់អាវយឺត!!</h1>
 
-            <p>jSlots is 2k of jQuery slot machine magic. It turns any list (&lt;ol&gt; or &lt;ul&gt;) into a slot machine!</p>
+            <p>Share this post: <a href="https://www.facebook.com/khmersmartkeyboard/photos/a.392029024281230.1073741827.392027000948099/401077880043011/?type=1">https://www.facebook.com/khmersmartkeyboard/photos/a.392029024281230.1073741827.392027000948099/401077880043011/?type=1</a></p>
+            <p>Add hashtage #khmer_smart_keyboard_happy_sunnday</p>
+            <img src="share1.png" alt="" width="500px">
+            <img src="share2.png" alt="" width="500px">
+
+            <button onclick="login()" type="">Login</button>
+            <button onclick="getShare()" type="">Get Sharers</button>
+            <ul id="sharers">
+                
+            </ul>
 
             <div class="fancy">
-                <ul class="slot">
-                    <!-- In reverse order so the 7s show on load -->
-                    <li><span>7</span></li>
-                    <li><span>6</span></li>
-                    <li><span>5</span></li>
-                    <li><span>4</span></li>
-                    <li><span>3</span></li>
-                    <li><span>2</span></li>
-                    <li><span>1</span></li>
+                <ul class="slot" id="slot">
+                    <!-- In reverse order so the 7s show on load -->                    
+                    
                 </ul>
                 <input type="button" id="playFancy" value="Play">
             </div>
 
         </div>
     </div>
-
-    <section class="demos">
-        <h2>Demos</h2>
-        <ul>
-            <li><a href="demos/simple.html">Super simple basic 3 slot</a></li>
-            <li><a href="demos/fancy.html">Fun fancy 7 slot (shown above)</a></li>
-        </ul>
-    </section>
-
-    <section class="docs">
-
-        <h2>Options</h2>
-
-        <p>These are the options, with their default values, and what they do</p>
-
-        <pre name="code" class="js">
-$.jSlots.defaultOptions = {
-    number : 3,          // Number: number of slots
-    winnerNumber : 1,    // Number or Array: list item number(s) upon which to trigger a win, 1-based index, NOT ZERO-BASED
-    spinner : '',        // CSS Selector: element to bind the start event to
-    spinEvent : 'click', // String: event to start slots on this event
-    onStart : $.noop,    // Function: runs on spin start,
-    onEnd : $.noop,      // Function: run on spin end. It is passed (finalNumbers:Array). finalNumbers gives the index of the li each slot stopped on in order.
-    onWin : $.noop,      // Function: run on winning number. It is passed (winCount:Number, winners:Array, finalNumbers:Array)
-    easing : 'swing',    // String: easing type for final spin. I recommend the easing plugin and easeOutSine, or an easeOut of your choice.
-    time : 7000,         // Number: total time of spin animation
-    loops : 6            // Number: times it will spin during the animation
-};</pre>
-
-        <h2 id="scroll_to_here">Usage</h2>
-
-        <p>Attach jQuery (successfully tested down to v1.4.1)</p>
-
-        <pre name="code" class="html">
-&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"&gt;&lt;/script&gt;</pre>
-
-        <p>Attach jSlots plugin</p>
-
-        <pre name="code" class="html">
-&lt;script src="jquery.jSlots.js" charset="utf-8"&gt;&lt;/script&gt;</pre>
-
-        <p>Attach easing plugin (optional but HIGHLY recommended for nice animation)</p>
-
-        <pre name="code" class="html">
-&lt;script src="jquery.easing.1.3.js" charset="utf-8"&gt;&lt;/script&gt;</pre>
-
-        <p>Create a list and an element that will spin the slots</p>
-
-        <pre name="code" class="html">
-&lt;ul class="slot"&gt;
-    &lt;li&gt;1&lt;/li&gt;
-    &lt;li&gt;2&lt;/li&gt;
-    &lt;li&gt;3&lt;/li&gt;
-    &lt;li&gt;4&lt;/li&gt;
-    &lt;li&gt;5&lt;/li&gt;
-    &lt;li&gt;6&lt;/li&gt;
-    &lt;li&gt;7&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;!-- this button will start the spin --&gt;
-&lt;input type="button" id="playBtn" value="play"&gt;</pre>
-
-        <p>Target the list and make it a jSlot!</p>
-
-        <pre name="code" class="html">
-&lt;script type="text/javascript" charset="utf-8"&gt;
-
-    $('.slot').jSlots({
-        spinner : '#playBtn',
-        winnerNumber : 7
-    });
-
-&lt;/script&gt;</pre>
-
-        <p>Styling is up to you, but jSlots supplies a jSlots-wrapper div around your lists that should get overflow: hidden and a height set on it. Here are some recommended styles:</p>
-
-        <pre name="code" class="css">
-.jSlots-wrapper {
-    overflow: hidden; /* to hide the magic */
-    height: 20px; /* whatever the height of your list items are */
-    display: inline-block; /* to size width correctly, can use float too, or width*/
-    border: 1px solid #999;
-}</pre>
 
     </section>
 
@@ -312,16 +231,10 @@ $.jSlots.defaultOptions = {
     <script src="jquery.jSlots.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
 
-        // normal example
-        $('.normal .slot').jSlots({
-            spinner : '#playNormal',
-            winnerNumber : 7
-        });
-
 
         // fancy example
         $('.fancy .slot').jSlots({
-            number : 7,
+            number : 1,
             winnerNumber : 1,
             spinner : '#playFancy',
             easing : 'easeOutSine',
@@ -361,6 +274,64 @@ $.jSlots.defaultOptions = {
         //HighlightAll(name, [showGutter], [showControls], [collapseAll], [firstLine], [showColumns])
     </script>
     <!-- /Syntax highlighting -->
+
+    <script>
+      window.myapp = {};
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '452220451533688',
+          xfbml      : true,
+          version    : 'v2.1'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+
+      function login(){
+        FB.getLoginStatus(function(response) {
+          if (response.status === 'connected') {
+            console.log('Logged in.');
+          }
+          else {
+            FB.login(function(){}, {scope: 'read_stream'});
+          }
+        });
+      }
+
+
+      function getShare(){
+        FB.api(
+          "/401077880043011/sharedposts",
+          function (response) {
+            console.log(response);
+            if (response && !response.error) {
+              var shares = response.data;
+              var sharers = [];
+              shares.forEach(function(share){
+                if(share.message ){
+                  if(share.message.indexOf("#ksk_happy_sunday") >= 0){
+                    sharers.push(share.from.name);
+                    $('#sharers').append('<li><span>' + share.from.name + '</span></li>');
+                    $('#slot').append('<li><span>' + share.from.name + '</span></li>');
+                    
+                  }
+                }
+              });
+              window.myapp.sharers = sharers;
+              
+            }
+          }
+      );
+      }
+
+    </script>
 
 </body>
 </html>

@@ -1,0 +1,25 @@
+@font-face { font-family: Tlok; src: url('Tlok.ttf'); } 
+@font-face { font-family: Banteay-Srey; src: url('BanteaySrey.ttf'); } 
+@font-face { font-family: AntiochText; src: url('AntiochText.ttf'); }             
+@font-face { font-family: AngTaso; src: url('AngTaso.ttf'); }             
+@font-face { font-family: Muol-Pai; src: url('Kh-Muol-Pali.ttf'); }             
+            
+
+
+h1 {
+    font-family: "AngTaso", "Montserrat",Helvetica,sans-serif;
+    line-height: 2.0em
+}
+
+h2 {
+    font-family: "Muol-Pai", "Montserrat",Helvetica,sans-serif;
+}
+
+li {
+    font-family: "AngTaso", "Montserrat",Helvetica,sans-serif;
+    line-height: normal !important;
+}
+
+#sharers li {
+	font-size: 35px;
+}
