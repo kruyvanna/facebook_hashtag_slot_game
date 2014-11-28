@@ -17,9 +17,26 @@ h2 {
 
 li {
     font-family: "AngTaso", "Montserrat",Helvetica,sans-serif;
-    line-height: normal !important;
+    /* line-height: normal !important; */
+}
+
+p {
+	font-size: 1.5em
 }
 
 #sharers li {
 	font-size: 35px;
+}
+
+.fancy {
+	text-align: center;
+}
+
+button {
+	padding: 10px;
+	border-radius: 5px;
+}
+
+button:focus {
+	outline: none;
 }

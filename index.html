@@ -202,13 +202,16 @@ input[type="button"] {
 
             <h1>រង្វាន់អាវយឺត!!</h1>
 
-            <p>Share this post: <a href="https://www.facebook.com/khmersmartkeyboard/photos/a.392029024281230.1073741827.392027000948099/401077880043011/?type=1">https://www.facebook.com/khmersmartkeyboard/photos/a.392029024281230.1073741827.392027000948099/401077880043011/?type=1</a></p>
-            <p>Add hashtage #khmer_smart_keyboard_happy_sunnday</p>
-            <img src="share1.png" alt="" width="500px">
-            <img src="share2.png" alt="" width="500px">
+            <p>Share this post: <a href="https://www.facebook.com/video.php?v=402643696553096" target="_blank">https://www.facebook.com/video.php?v=402643696553096</a></p>
+            <p>Add hashtage #gday #khmerkeyboard</p>
+            <img src="share1.jpg" alt="" width="500px">
+            <img src="share2.jpg" alt="" width="500px">
 
-            <button onclick="login()" type="">Login</button>
-            <button onclick="getShare()" type="">Get Sharers</button>
+            <p>
+                
+            </p>
+            <button onclick="login()" type="">ភ្ជាប់</button>
+            <button onclick="getShare()" type="">បង្ហាញអ្នក Share</button>
             <ul id="sharers">
                 
             </ul>
@@ -218,7 +221,10 @@ input[type="button"] {
                     <!-- In reverse order so the 7s show on load -->                    
                     
                 </ul>
-                <input type="button" id="playFancy" value="Play">
+                <p>
+                    <button id="playFancy">ចាប់ផ្ដើម!</button>                    
+                </p>
+                
             </div>
 
         </div>
@@ -228,40 +234,7 @@ input[type="button"] {
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="jquery.easing.1.3.js" type="text/javascript" charset="utf-8"></script>
-    <script src="jquery.jSlots.min.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" charset="utf-8">
-
-
-        // fancy example
-        $('.fancy .slot').jSlots({
-            number : 1,
-            winnerNumber : 1,
-            spinner : '#playFancy',
-            easing : 'easeOutSine',
-            time : 7000,
-            loops : 6,
-            onStart : function() {
-                $('.slot').removeClass('winner');
-            },
-            onWin : function(winCount, winners, finalNumbers) {
-                // only fires if you win
-
-                $.each(winners, function() {
-                    this.addClass('winner');
-                });
-
-                // react to the # of winning slots
-                if ( winCount === 1 ) {
-                    //alert('You got ' + winCount + ' 7!!!');
-                } else if ( winCount > 1 ) {
-                    //alert('You got ' + winCount + ' 7’s!!!');
-                }
-
-            }
-        });
-
-
-    </script>
+    <script src="jquery.jSlots.min.js" type="text/javascript" charset="utf-8"></script>    
 
     <!-- Syntax highlighting, ignore this -->
     <script src="SyntaxHighlighter/Scripts/shCore.js" type="text/javascript" charset="utf-8"></script>
@@ -275,63 +248,7 @@ input[type="button"] {
     </script>
     <!-- /Syntax highlighting -->
 
-    <script>
-      window.myapp = {};
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '452220451533688',
-          xfbml      : true,
-          version    : 'v2.1'
-        });
-      };
-
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-
-
-      function login(){
-        FB.getLoginStatus(function(response) {
-          if (response.status === 'connected') {
-            console.log('Logged in.');
-          }
-          else {
-            FB.login(function(){}, {scope: 'read_stream'});
-          }
-        });
-      }
-
-
-      function getShare(){
-        FB.api(
-          "/401077880043011/sharedposts",
-          function (response) {
-            console.log(response);
-            if (response && !response.error) {
-              var shares = response.data;
-              var sharers = [];
-              shares.forEach(function(share){
-                if(share.message ){
-                  if(share.message.indexOf("#ksk_happy_sunday") >= 0){
-                    sharers.push(share.from.name);
-                    $('#sharers').append('<li><span>' + share.from.name + '</span></li>');
-                    $('#slot').append('<li><span>' + share.from.name + '</span></li>');
-                    
-                  }
-                }
-              });
-              window.myapp.sharers = sharers;
-              
-            }
-          }
-      );
-      }
-
-    </script>
+    <script src="app.js"></script>
 
 </body>
 </html>
