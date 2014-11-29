@@ -1,3 +1,16 @@
+Array.prototype.getUnique = function(){
+   var u = {}, a = [];
+   for(var i = 0, l = this.length; i < l; ++i){
+      if(u.hasOwnProperty(this[i])) {
+         continue;
+      }
+      a.push(this[i]);
+      u[this[i]] = 1;
+   }
+   return a;
+}
+
+
 window.myapp = {};
 window.fbAsyncInit = function() {
   FB.init({
@@ -69,13 +82,17 @@ function getShare(){
         shares.forEach(function(share){
           if(share.message ){
             if(share.message.indexOf("#khmer_smart_keyboard_happy_sunday") >= 0){
-              sharers.push(share.from.name);
-              $('#sharers').append('<li><span>' + share.from.name + '</span></li>');
-              $('#slot').append('<li><span>' + share.from.name + '</span></li>');
-              
+              sharers.push(share.from.name);                            
             }
           }
         });
+
+        sharers = sharers.getUnique();
+        sharers.forEach(function(sharer ){
+          $('#sharers').append('<li><span>' + sharer + '</span></li>');
+          $('#slot').append('<li><span>' + sharer + '</span></li>');
+        });
+
         initJSlots();
         window.myapp.sharers = sharers;
         
