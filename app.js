@@ -40,11 +40,49 @@ function login(){
   });
 }
 
+function removeWinner(){
+  if(myapp.previousWinnerIndex) {
+    myapp.sharers.splice(myapp.previousWinnerIndex, 1);    
+    myapp.previousWinnerIndex = undefined;
+  }
+  initJSlots();
+}
+
 // fancy example
 function initJSlots(){
+  $('#slot').empty();  
+  $('#sharers').empty();
+  window.myapp.sharers = [
+    "1",      
+    "2",
+      "3",      
+      "4",      
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15"
+  ]
+
+  var len = myapp.sharers.length;
+  while(len >0){
+    len--;
+    var sharer = myapp.sharers[len]    
+
+    $('#sharers').append('<li><span>' + sharer + '</span></li>');
+    $('#slot').append('<li><span>' + sharer + '</span></li>');
+  }
+  
+
   $('.fancy .slot').jSlots({
       number : 1,
-      winnerNumber : 1,
+      winnerNumber : 7,
       spinner : '#playFancy',
       easing : 'easeOutSine',
       time : 7000,
@@ -52,12 +90,18 @@ function initJSlots(){
       onStart : function() {
           $('.slot').removeClass('winner');
       },
+      onEnd: function(finalNumbers){
+        console.log(finalNumbers);
+        myapp.previousWinnerIndex = finalNumbers[0];
+      },
       onWin : function(winCount, winners, finalNumbers) {
           // only fires if you win
 
           $.each(winners, function() {
               this.addClass('winner');
           });
+
+          console.log(winCount, winners, finalNumbers);
 
           // react to the # of winning slots
           if ( winCount === 1 ) {
@@ -72,31 +116,37 @@ function initJSlots(){
 
 
 function getShare(){
-  FB.api(
-    "/401077880043011/sharedposts",
-    function (response) {
-      console.log(response);
-      if (response && !response.error) {
-        var shares = response.data;
-        var sharers = [];
-        shares.forEach(function(share){
-          if(share.message ){
-            if(share.message.indexOf("#khmer_smart_keyboard_happy_sunday") >= 0){
-              sharers.push(share.from.name);                            
-            }
-          }
-        });
-
-        sharers = sharers.getUnique();
-        sharers.forEach(function(sharer ){
-          $('#sharers').append('<li><span>' + sharer + '</span></li>');
-          $('#slot').append('<li><span>' + sharer + '</span></li>');
-        });
-
-        initJSlots();
-        window.myapp.sharers = sharers;
-        
-      }
-    }
-  );
+  initJSlots();
 }
+
+// function getShare(){
+//   FB.api(
+//     "/488768554607276/sharedposts?limit=300",
+//     function (response) {
+//       console.log( 'response', response);
+//       if (response && !response.error) {
+//         var shares = response.data;
+//         console.log( 'shares', shares.length);
+//         var sharers = [];
+//         var len = shares.length;
+//         while(len >= 0){
+//           len--;
+//           var share = shares[len];
+//           if(share && share.message){
+//             console.log(share.message);
+//             if(share.message.toLowerCase().indexOf("#android") >= 0){
+//               sharers.push(share.from.name);                            
+//             }
+//           }
+//         }
+        
+//         window.allSharers = sharers;                        
+//         window.myapp.sharers = sharers.getUnique();
+
+//         initJSlots();
+        
+        
+//       }
+//     }
+//   );
+// }
